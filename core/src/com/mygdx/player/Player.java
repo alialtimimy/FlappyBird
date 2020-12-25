@@ -16,7 +16,7 @@ public class Player {
     private float x, y;
     private Rectangle rect;
     private Body body;
-
+    
     public Player(){
         img = new Texture("Assets/icon.jpg");
         monkey = new Sprite(img);
