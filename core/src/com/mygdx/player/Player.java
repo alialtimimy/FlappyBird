@@ -1,5 +1,7 @@
 package com.mygdx.player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -38,7 +40,7 @@ public class Player {
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape polygonShape = new PolygonShape();
         fixtureDef.shape = polygonShape;
-        polygonShape.setAsBox(rect.getX(), rect.getY());
+        polygonShape.setAsBox(rect.getX(), rect.getY(), new Vector2(0,0),0);
 
     }
 
@@ -52,8 +54,27 @@ public class Player {
 
     public void update(SpriteBatch batch){
         monkey.setPosition(body.getPosition().x, body.getPosition().y);
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            body.getLinearVelocity().add(0, -20);
+        }
+        else{
+            body.setLinearVelocity(0,0);
+            body.setGravityScale(1);
+        }
         render(batch);
 
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public Body getBody() {
+        return body;
     }
 
     public void setX(float x) {
